@@ -3,9 +3,11 @@
 import React                  from 'react';
 import NavigationBar          from '../../components/navigation/NavigationBar.jsx';
 import navigationModel        from '../../models/navigation.model.json';
+
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import * as viewsActions      from '../../redux/actions';
+import dataModel                  from '../../models/list.model.json';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +15,10 @@ class App extends React.Component {
     this.state = {
       navModel : navigationModel
     };
+  }
+
+  componentDidMount() {
+    this.props.actions.initData([...dataModel]);
   }
 
   handleLeftNavItemClick(event, viewName) {

@@ -4,9 +4,9 @@
   "description": "react js + redux + react router + hot reload + devTools + bootstrap + webpack starter",
   "main": "src/index.js",
   "scripts": {
-    "dev": "NODE_ENV=dev webpack",
-    "prod": "NODE_ENV=production webpack -p --config webpack.production.config.babel.js ",
-    "start": "NODE_ENV=dev babel-node --presets es2015 ./server.hot.reload.js"
+    "dev": "env NODE_ENV=dev webpack",
+    "prod": "env NODE_ENV=production webpack -p --config webpack.production.config.babel.js ",
+    "start": "env NODE_ENV=dev babel-node --presets es2015 ./server.hot.reload.js"
   },
   "keywords": [
     "react",
@@ -62,6 +62,8 @@
     "jquery": "^2.2.1",
     "react": "^0.14.7",
     "react-bootstrap": "^0.28.3",
+    "react-dnd": "^2.1.4",
+    "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^0.14.7",
     "react-modal": "^0.6.1",
     "react-notification": "^5.0.1",

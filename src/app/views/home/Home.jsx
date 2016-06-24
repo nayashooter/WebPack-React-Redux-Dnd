@@ -1,9 +1,13 @@
 'use strict';
 
-import React      from 'react';
-import Jumbotron  from '../../components/jumbotron/Jumbotron.jsx';
-import classNames from 'classnames';
-import { Link }   from 'react-router';
+import React                      from 'react';
+import Jumbotron                  from '../../components/jumbotron/Jumbotron.jsx';
+import classNames                 from 'classnames';
+import { Link }                   from 'react-router';
+import Categorie                  from '../../components/categorie/categorie.jsx';
+import Jour                       from '../../components/jour/jour.jsx';
+import { DragDropContext }        from 'react-dnd';
+import HTML5Backend               from 'react-dnd-html5-backend';
 
 class Home extends React.Component {
   constructor(props) {
@@ -14,16 +18,21 @@ class Home extends React.Component {
   init() {
     this.state = {
       animated    : true,
-      viewEnters  : false
+      viewEnters  : false,
+      lundi : [],
+      mardi : [],
+      mercredi : [],
+      jeudi : [],
+      vendredi : [],
     };
   }
 
   componentWillMount() {
-    this.props.actions.enterHome();
 
-    this.state = {
-      viewEnters  : true
-    };
+  }
+
+  componentDidMount() {
+    this.props.actions.enterHome();
   }
 
   componentWillUnmount() {
@@ -38,6 +47,40 @@ class Home extends React.Component {
     return homeViewClasses;
   }
 
+  handleDrop(index,item) {
+  const { name } = item;
+
+  if ( index === 0){
+      var data = [...this.state.lundi];
+      data.push(item);
+      this.setState({lundi:[...data]});
+  }
+
+  if ( index === 1){
+    var data = [...this.state.mardi];
+    data.push(item);
+    this.setState({mardi:[...data]});
+  }
+
+  if ( index === 2){
+    var data = [...this.state.mercredi];
+    data.push(item);
+    this.setState({mercredi:[...data]});
+  }
+
+  if ( index === 3){
+    var data = [...this.state.jeudi];
+    data.push(item);
+    this.setState({jeudi:[...data]});
+  }
+
+  if ( index === 4){
+    var data = [...this.state.vendredi];
+    data.push(item);
+    this.setState({vendredi:[...data]});
+  }
+}
+
   render() {
     return(
       <div
@@ -45,27 +88,57 @@ class Home extends React.Component {
         className={this.processViewAnimationClasses()}>
         <Jumbotron>
           <h1>
-            Full ES2015 ReactJS + Bootstrap
+            Test pour Drag and Drop
           </h1>
           <h2>
-            with Hot Reload!!!
+            Reacts JS + Boostrap + Redux
           </h2>
-          <h2>
-            with React Router (SPA)
-          </h2>
-          <h1>
-            Starter
-          </h1>
-          <h1></h1>
-          <p>
-            <Link
-              className="btn btn-success btn-lg"
-              to={'/about'}>
-              <i className="fa fa-info"></i>
-              &nbsp;
-              go to about
-            </Link>
-          </p>
+
+          <div className="row">
+            <div className="col-md-2">
+              <span>Catégorie</span>
+            {
+              this.props.currentView.listItem.map(
+                (item,idx) => {
+                  return (
+                    <Categorie key={idx} name={item.name}/>
+                  );
+                }
+              )
+            }
+            </div>
+            <div className="col-md-2">
+              <Jour
+                jour="Lundi"
+                listItem={this.state.lundi}
+                 onDrop={(item) => this.handleDrop(0,item)}></Jour>
+            </div>
+            <div className="col-md-2">
+              <Jour
+                jour="Mardi"
+                listItem={this.state.mardi}
+               onDrop={(item) => this.handleDrop(1, item)}></Jour>
+            </div>
+            <div className="col-md-2">
+              <Jour
+                jour="Mercredi"
+                listItem={this.state.mercredi}
+               onDrop={(item) => this.handleDrop(2, item)}></Jour>
+            </div>
+            <div className="col-md-2">
+              <Jour
+                jour="Jeudi"
+                listItem={this.state.jeudi}
+               onDrop={(item) => this.handleDrop(3, item)}></Jour>
+            </div>
+            <div className="col-md-2">
+              <Jour
+                jour="Vendredi"
+                listItem={this.state.vendredi}
+               onDrop={(item) => this.handleDrop(4, item)}></Jour>
+            </div>
+          </div>
+
         </Jumbotron>
       </div>
     );
@@ -76,4 +149,4 @@ Home.propTypes= {
   actions: React.PropTypes.object
 };
 
-export default Home;
+export default DragDropContext(HTML5Backend)(Home);

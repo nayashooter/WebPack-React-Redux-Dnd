@@ -13,6 +13,7 @@ class About extends React.Component {
   }
 
   render() {
+    console.log('currentView: ', this.props.currentView);
     return(
       <div>
         <h1>

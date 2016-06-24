@@ -4,7 +4,9 @@ import {
   enterHome,
   leaveHome,
   enterAbout,
-  leaveAbout
+  leaveAbout,
+  initData,
+  moveCategorie
 }             from './views';
 
 
@@ -12,5 +14,7 @@ export {
   enterHome,
   leaveHome,
   enterAbout,
-  leaveAbout
+  leaveAbout,
+  initData,
+  moveCategorie
 };

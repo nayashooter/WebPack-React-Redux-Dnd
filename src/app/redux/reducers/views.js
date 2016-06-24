@@ -1,9 +1,10 @@
 'use strict';
 
 const initialState = {
-  currentView:  'home',
+  currentView:  'root',
   enterTime:    null,
-  leaveTime:    null
+  leaveTime:    null,
+  listItem: []
 };
 
 const views = (state = initialState, action) => {
@@ -53,6 +54,17 @@ const views = (state = initialState, action) => {
       });
     }
     return state;
+
+  case 'INIT_DATA':
+    return Object.assign({}, state, {
+      listItem: action.listItem
+    });
+
+  case 'MOVE_CATEGORIE':
+    return Object.assign({}, state, {
+      categorie: action.categorie,
+      jour: action.jour
+    });
 
 
   default:
