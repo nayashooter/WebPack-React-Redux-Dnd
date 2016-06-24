@@ -52,10 +52,10 @@ export const initData = (data) =>{
   };
 };
 
-export const moveCategorie = (categorie,jour) =>{
+export const moveCategorie = (categorie,index) =>{
   return {
     type: MOVE_CATEGORIE,
     categorie: categorie,
-    jour: jour
+    index: index
   };
 };

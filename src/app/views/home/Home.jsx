@@ -48,38 +48,9 @@ class Home extends React.Component {
   }
 
   handleDrop(index,item) {
-  const { name } = item;
-
-  if ( index === 0){
-      var data = [...this.state.lundi];
-      data.push(item);
-      this.setState({lundi:[...data]});
+    const { name } = item;
+    this.props.actions.moveCategorie(item,index);
   }
-
-  if ( index === 1){
-    var data = [...this.state.mardi];
-    data.push(item);
-    this.setState({mardi:[...data]});
-  }
-
-  if ( index === 2){
-    var data = [...this.state.mercredi];
-    data.push(item);
-    this.setState({mercredi:[...data]});
-  }
-
-  if ( index === 3){
-    var data = [...this.state.jeudi];
-    data.push(item);
-    this.setState({jeudi:[...data]});
-  }
-
-  if ( index === 4){
-    var data = [...this.state.vendredi];
-    data.push(item);
-    this.setState({vendredi:[...data]});
-  }
-}
 
   render() {
     return(
@@ -110,32 +81,32 @@ class Home extends React.Component {
             <div className="col-md-2">
               <Jour
                 jour="Lundi"
-                listItem={this.state.lundi}
-                 onDrop={(item) => this.handleDrop(0,item)}></Jour>
+                listItem={this.props.currentView.planning.lundi}
+                 onDrop={(item) => this.handleDrop("lundi",item)}></Jour>
             </div>
             <div className="col-md-2">
               <Jour
                 jour="Mardi"
-                listItem={this.state.mardi}
-               onDrop={(item) => this.handleDrop(1, item)}></Jour>
+                listItem={this.props.currentView.planning.mardi}
+               onDrop={(item) => this.handleDrop("mardi", item)}></Jour>
             </div>
             <div className="col-md-2">
               <Jour
                 jour="Mercredi"
-                listItem={this.state.mercredi}
-               onDrop={(item) => this.handleDrop(2, item)}></Jour>
+                listItem={this.props.currentView.planning.mercredi}
+               onDrop={(item) => this.handleDrop("mercredi", item)}></Jour>
             </div>
             <div className="col-md-2">
               <Jour
                 jour="Jeudi"
-                listItem={this.state.jeudi}
-               onDrop={(item) => this.handleDrop(3, item)}></Jour>
+                listItem={this.props.currentView.planning.jeudi}
+               onDrop={(item) => this.handleDrop("jeudi", item)}></Jour>
             </div>
             <div className="col-md-2">
               <Jour
                 jour="Vendredi"
-                listItem={this.state.vendredi}
-               onDrop={(item) => this.handleDrop(4, item)}></Jour>
+                listItem={this.props.currentView.planning.vendredi}
+               onDrop={(item) => this.handleDrop("vendredi", item)}></Jour>
             </div>
           </div>
 

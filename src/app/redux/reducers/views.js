@@ -4,7 +4,14 @@ const initialState = {
   currentView:  'root',
   enterTime:    null,
   leaveTime:    null,
-  listItem: []
+  listItem: [],
+  planning:{
+    "lundi" : [],
+    "mardi" : [],
+    "mercredi" : [],
+    "jeudi" : [],
+    "vendredi" : [],
+  }
 };
 
 const views = (state = initialState, action) => {
@@ -61,9 +68,24 @@ const views = (state = initialState, action) => {
     });
 
   case 'MOVE_CATEGORIE':
+    var data = state.planning;
+    if ( action.index === "lundi"){
+      data.lundi.push(action.categorie);
+    }
+    if ( action.index === "mardi"){
+      data.mardi.push(action.categorie);
+    }
+    if ( action.index === "mercredi"){
+      data.mercredi.push(action.categorie);
+    }
+    if ( action.index === "jeudi"){
+      data.jeudi.push(action.categorie);
+    }
+    if ( action.index === "vendredi"){
+      data.vendredi.push(action.categorie);
+    }
     return Object.assign({}, state, {
-      categorie: action.categorie,
-      jour: action.jour
+      planning: data,
     });
 
 

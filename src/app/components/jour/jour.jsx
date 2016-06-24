@@ -20,7 +20,7 @@ class Jour extends React.Component {
       <div style={{backgroundColor}} className="colJour">
         <div className="headerJour">{this.props.jour}</div>
         {listItem.length === 0 ?
-          'Release to drop' :
+          <span className="msgInfo">Glisser votre activité</span> :
           ''
         }
 
